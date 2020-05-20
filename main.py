@@ -1,11 +1,21 @@
 import pygame
+print("Importing pygame...")
 import random
+print("Importing random...")
 import sys
+print("Importing sys...")
 import math
+print("Importing math...")
 from pygame.locals import *
+print("Importing everything from pygame locals...")
 from sprite_loader import *
+print("Importing everything from sprite_loader...")
 from cat import *
+print("Importing everything from cat")
 from player import *
+print("Importing everything from player...")
+
+print("Imports done!")
 
 pygame.init()
 
@@ -32,6 +42,26 @@ def get_images():
 def main():
   get_images()
   cat = Cat((-90, random.randint(50, height-50)), cat_images)
+  player = Player(width // 2, height // 2, man_images)
+
+while True:
+  clock.ticks(60)
+  
+  for event in pygame.event.get():
+    if event.type == "QUIT":
+      sys.exit()
+
+  keys = pygame.keys.get_pressed()
+
+  if K_UP in keys:
+    player.up()
+  if K_DOWN in keys:
+    player.down()
+  if K_LEFT in keys:
+    player.left()
+  if K_RIGHT in keys:
+    player.right()
 
 if __name__ == "__main__":
   main()
+
